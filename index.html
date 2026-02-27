@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML5 Tags & Attributes Learning Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="toggle-wrap">
+        <span class="toggle-label" id="toggle-text">Light</span>
+        <button
+          class="toggle"
+          id="darkToggle"
+          aria-label="Toggle dark mode"
+          title="Toggle dark mode"
+        ></button>
+        <span class="toggle-icon" id="toggle-icon">☀️</span>
+      </div>
+      <h1>HTML5 Tags &amp; Attributes</h1>
+      <p>A visual reference for modern HTML5 elements</p>
+    </header>
+
+    <main>
+      <!-- CODE & KBD -->
+      <section>
+        <h2>&lt;code&gt; and &lt;kbd&gt;</h2>
+        Example: <code>console.log("Hello")</code><br /><br />
+        Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save
+        <div class="desc">
+          <b>&lt;code&gt;</b> displays programming code.<br />
+          <b>&lt;kbd&gt;</b> represents keyboard input.
+        </div>
+      </section>
+
+      <!-- FORM -->
+      <section>
+        <h2>&lt;form&gt; &amp; All Form Tags</h2>
+        <form autocomplete="off" id="demoForm">
+          <!-- 1. Personal Info: text, email, number, checkbox -->
+          <fieldset>
+            <legend>Personal Info</legend>
+            <div class="form-grid">
+              <input type="text" placeholder="Enter name" autofocus required />
+              <input type="email" readonly value="abc@gmail.com" />
+              <input type="number" step="0.5" placeholder="Enter number" />
+              <label class="check-label">
+                <input type="checkbox" checked /> Agree to terms
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- 2. Search + Datalist + Disabled -->
+          <fieldset>
+            <legend>Search &amp; Suggestions</legend>
+            <div class="form-grid">
+              <div class="search-wrap form-search">
+                <span class="search-icon">🔍</span>
+                <input type="search" placeholder="Search topics…" />
+              </div>
+              <input
+                class="datalist-input"
+                type="text"
+                list="tech-list"
+                placeholder="Pick a language…"
+                autocomplete="off"
+              />
+              <datalist id="tech-list">
+                <option value="HTML"></option>
+                <option value="CSS"></option>
+                <option value="JavaScript"></option>
+                <option value="TypeScript"></option>
+                <option value="Python"></option>
+                <option value="Rust"></option>
+                <option value="Go"></option>
+              </datalist>
+              <input type="text" value="Disabled field" disabled />
+              <button type="button" class="btn btn-primary" disabled>
+                Disabled Button
+              </button>
+            </div>
+          </fieldset>
+
+          <!-- 3. Output tag: range + sum calculator -->
+          <fieldset>
+            <legend>Output Tag</legend>
+            <div class="output-demo">
+              <div class="range-group">
+                <label for="vol">Volume:</label>
+                <input
+                  type="range"
+                  id="vol"
+                  min="0"
+                  max="100"
+                  value="60"
+                  oninput="document.getElementById('volOut').value = this.value"
+                />
+              </div>
+              <output id="volOut" for="vol">60</output>
+            </div>
+            <div class="output-eq">
+              <input
+                type="number"
+                id="numA"
+                value="10"
+                min="0"
+                oninput="updateSum()"
+              />
+              <span>+</span>
+              <input
+                type="number"
+                id="numB"
+                value="20"
+                min="0"
+                oninput="updateSum()"
+              />
+              <span>=</span>
+              <output id="sumOut" for="numA numB">30</output>
+            </div>
+          </fieldset>
+
+          <!-- 4. Radio + Password + Remember -->
+          <fieldset>
+            <legend>Account &amp; Preferences</legend>
+            <div class="form-grid">
+              <input type="text" placeholder="Username" />
+              <input type="password" placeholder="Password" />
+              <input type="text" value="Suspended account" disabled />
+              <label class="check-label"
+                ><input type="checkbox" /> Remember me</label
+              >
+            </div>
+            <div class="form-grid" style="margin-top: 10px">
+              <label class="check-label"
+                ><input type="radio" name="theme" checked /> Light</label
+              >
+              <label class="check-label"
+                ><input type="radio" name="theme" /> Dark</label
+              >
+              <label class="check-label"
+                ><input type="radio" name="theme" disabled /> System
+                (disabled)</label
+              >
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="desc">
+          <b>&lt;form&gt;</b> collects all user input;
+          <code>autocomplete="off"</code> disables browser suggestions.<br />
+          <b>&lt;fieldset&gt;</b> groups related controls;
+          <b>&lt;legend&gt;</b> gives each group a title.<br />
+          <code>autofocus</code> → focuses this input automatically on page
+          load.<br />
+          <code>required</code> → field must be filled before form submits.<br />
+          <code>readonly</code> → visible but not editable.<br />
+          <code>disabled</code> → completely non-interactive (grayed out).<br />
+          <code>step="0.5"</code> → number increments in 0.5 steps.<br />
+          <code>checked</code> → checkbox/radio pre-selected by default.<br />
+          <code>type="search"</code> → semantic search field with built-in clear
+          ✕ button.<br />
+          <code>list="id"</code> → links input to a <b>&lt;datalist&gt;</b> for
+          autocomplete.<br />
+          <b>&lt;output&gt;</b> displays live calculation results;
+          <code>for="id1 id2"</code> links it to its inputs.
+        </div>
+      </section>
+
+      <!-- TABLE -->
+      <section>
+        <h2>&lt;table&gt; Tag</h2>
+        <table>
+          <caption>
+            Student Marks
+          </caption>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Marks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Abhishek</td>
+              <td>90</td>
+            </tr>
+            <tr>
+              <td>Priya</td>
+              <td>85</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="desc">
+          <b>&lt;table&gt;</b> creates a table.<br />
+          <b>&lt;caption&gt;</b> gives the table a title.<br />
+          <b>&lt;th&gt;</b> defines a header cell.<br />
+          <b>&lt;td&gt;</b> defines a data cell.
+        </div>
+      </section>
+
+      <!-- FIGURE -->
+      <section>
+        <h2>&lt;figure&gt; and &lt;img&gt;</h2>
+        <figure>
+          <img
+            src="image.png"
+            width="200"
+            loading="lazy"
+            alt="Example"
+            onerror="
+              this.src = 'https://placehold.co/200x140/3b82f6/ffffff?text=Image'
+            "
+          />
+          <figcaption>fig 1: Abhishek's Profile Pic</figcaption>
+        </figure>
+        <div class="desc">
+          <b>&lt;figure&gt;</b> groups media content.<br />
+          <b>&lt;figcaption&gt;</b> adds a caption.<br />
+          <code>loading="lazy"</code> → defers load until visible.
+        </div>
+      </section>
+
+      <!-- AUDIO & VIDEO -->
+      <section>
+        <h2>&lt;audio&gt; and &lt;video&gt;</h2>
+        <audio controls muted loop>
+          <source src="audio.mpeg" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <video width="300" controls muted>
+          <source src="video.mp4" type="video/mp4" />
+          Your browser does not support the video element.
+        </video>
+        <div class="desc">
+          <b>&lt;audio&gt;</b> embeds audio.<br />
+          <b>&lt;video&gt;</b> embeds video.<br />
+          <code>controls</code> → shows play/pause buttons.<br />
+          <code>muted</code> → starts with no sound.<br />
+          <code>loop</code> → repeats automatically.
+        </div>
+      </section>
+
+      <!-- DETAILS -->
+      <section>
+        <h2>&lt;details&gt; and &lt;summary&gt;</h2>
+        <details>
+          <summary>Click to expand (Summary tag)</summary>
+          <p>
+            Hidden content is revealed here when the details element is open.
+          </p>
+        </details>
+        <div class="desc">
+          <b>&lt;details&gt;</b> creates collapsible content.<br />
+          <b>&lt;summary&gt;</b> is the clickable heading.
+        </div>
+      </section>
+
+      <!-- PROGRESS -->
+      <section>
+        <h2>&lt;progress&gt; Tag</h2>
+        <progress value="60" max="100">60%</progress>
+        <p class="progress-label">60 / 100 — Task completion</p>
+        <div class="desc">
+          <b>&lt;progress&gt;</b> shows task completion progress.<br />
+          <code>value</code> → current progress value.<br />
+          <code>max</code> → total value.
+        </div>
+      </section>
+
+      <!-- TIME -->
+      <section>
+        <h2>&lt;time&gt; Tag</h2>
+        <time datetime="2026-02-27">27 February 2026</time>
+        <div class="desc">
+          <b>&lt;time&gt;</b> represents a date/time in machine-readable
+          format.<br />
+          <code>datetime</code> → the machine-readable value.
+        </div>
+      </section>
+
+      <!-- ADDRESS -->
+      <section>
+        <h2>&lt;address&gt; Tag</h2>
+        <address>
+          Written by Abhishek<br />
+          Mumbai, India
+        </address>
+        <div class="desc">
+          <b>&lt;address&gt;</b> displays contact information.
+        </div>
+      </section>
+
+      <!-- IFRAME -->
+      <section>
+        <h2>&lt;iframe&gt; Tag</h2>
+        <div class="iframe-grid">
+          <div class="iframe-wrap">
+            <div class="iframe-label">📺 YouTube Embed</div>
+            <iframe
+              height="315"
+              src="https://www.youtube.com/embed/tww-gbNPOcA"
+              title="YouTube Video Player"
+              loading="lazy"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+          <div class="iframe-wrap">
+            <div class="iframe-label">🌐 External site: w3schools.com</div>
+            <iframe
+              src="https://www.w3schools.com/"
+              height="250"
+              title="W3Schools"
+            ></iframe>
+          </div>
+        </div>
+        <div class="desc">
+          <b>&lt;iframe&gt;</b> embeds another HTML document within the current
+          page.<br />
+          <code>allowfullscreen</code> → permits fullscreen mode.<br />
+          <code>loading="lazy"</code> → defers load until visible.<br />
+          <code>referrerpolicy</code> → controls referrer information sent.
+        </div>
+      </section>
+
+      <!-- DIALOG -->
+      <section>
+        <h2>&lt;dialog&gt; Tag</h2>
+        <button class="open-dialog-btn" id="openDialog">
+          <span>🪟</span> Open Dialog
+        </button>
+
+        <dialog id="myDialog">
+          <div class="dialog-header">
+            <h3>&lt;dialog&gt; Element</h3>
+            <button class="dialog-close" id="closeDialog" title="Close">
+              ✕
+            </button>
+          </div>
+          <div class="dialog-body">
+            <p>
+              This is a native HTML5 <code>&lt;dialog&gt;</code> element — no
+              extra libraries needed!
+            </p>
+            <br />
+            <p>
+              It comes with a built-in <code>::backdrop</code> pseudo-element
+              for the overlay, and the <code>open</code> attribute controls
+              visibility.
+            </p>
+          </div>
+          <div class="dialog-footer">
+            <button class="btn btn-ghost" id="cancelDialog">Cancel</button>
+            <button class="btn btn-primary" id="confirmDialog">Got it!</button>
+          </div>
+        </dialog>
+
+        <div class="desc">
+          <b>&lt;dialog&gt;</b> creates a native modal or popup window.<br />
+          <code>.showModal()</code> → opens as a modal with a backdrop
+          overlay.<br />
+          <code>.show()</code> → opens without backdrop (non-modal mode).<br />
+          <code>.close()</code> → closes the dialog.<br />
+          <code>::backdrop</code> → CSS pseudo-element for styling the overlay.
+        </div>
+      </section>
+
+      <!-- DRAGGABLE -->
+      <section>
+        <h2>draggable attribute</h2>
+        <p
+          style="
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+          "
+        >
+          Drag the colored chips into the drop zone below:
+        </p>
+        <div class="drag-zone" id="dragSource">
+          <div class="drag-item" draggable="true" data-color="blue">
+            🔵 HTML
+          </div>
+          <div class="drag-item" draggable="true" data-color="green">
+            🟢 CSS
+          </div>
+          <div class="drag-item" draggable="true" data-color="purple">
+            🟣 JavaScript
+          </div>
+          <div class="drag-item" draggable="true" data-color="orange">
+            🟠 Python
+          </div>
+        </div>
+        <div class="drop-area" id="dropZone">Drop chips here…</div>
+        <p class="drag-hint">
+          ↩
+          <span
+            id="resetDrag"
+            style="
+              color: var(--accent);
+              cursor: pointer;
+              font-style: normal;
+              font-weight: 600;
+            "
+            >Reset</span
+          >
+        </p>
+        <div class="desc">
+          <code>draggable="true"</code> → makes any element draggable by the
+          user.<br />
+          <code>draggable="false"</code> → explicitly disables dragging (default
+          for most elements).<br />
+          Works with JS drag events: <code>dragstart</code>,
+          <code>dragover</code>, <code>drop</code>, <code>dragend</code>.<br />
+          Images and links are draggable by default — no attribute needed.
+        </div>
+      </section>
+
+      <!-- CONTENTEDITABLE -->
+      <section>
+        <h2>contenteditable attribute</h2>
+        <div class="editable-label">
+          <span class="live-dot"></span>
+          contenteditable="true" — click to edit
+        </div>
+        <div class="edit-toolbar">
+          <button class="edit-btn" onclick="document.execCommand('bold')">
+            <b>B</b>
+          </button>
+          <button class="edit-btn" onclick="document.execCommand('italic')">
+            <i>I</i>
+          </button>
+          <button class="edit-btn" onclick="document.execCommand('underline')">
+            <u>U</u>
+          </button>
+          <button
+            class="edit-btn"
+            onclick="
+              document.getElementById('editBox').innerHTML = originalText
+            "
+          >
+            ↺ Reset
+          </button>
+        </div>
+        <div
+          class="editable-box"
+          id="editBox"
+          contenteditable="true"
+          spellcheck="true"
+        >
+          This text is fully <strong>editable</strong> — click anywhere here and
+          start typing! You can also <em>select text</em> and use the toolbar
+          buttons above to style it.
+        </div>
+        <div class="editable-false" contenteditable="false">
+          contenteditable="false" — this block cannot be edited.
+        </div>
+        <div class="desc">
+          <code>contenteditable="true"</code> → makes any element's content
+          directly editable in the browser.<br />
+          <code>contenteditable="false"</code> → explicitly prevents editing
+          (default behaviour).<br />
+          <code>spellcheck="true"</code> → enables browser spell-check on
+          editable content.<br />
+          <code>document.execCommand()</code> → applies formatting (bold,
+          italic, underline) to selected text.
+        </div>
+      </section>
+
+      <!-- METER -->
+      <section>
+        <h2>&lt;meter&gt; Tag</h2>
+        <div class="meter-list">
+          <div class="meter-row">
+            <label>Battery</label>
+            <meter
+              min="0"
+              max="100"
+              low="25"
+              high="75"
+              optimum="100"
+              value="82"
+            ></meter>
+            <span class="meter-val">82%</span>
+          </div>
+          <div class="meter-row">
+            <label>Warning</label>
+            <meter
+              min="0"
+              max="100"
+              low="25"
+              high="75"
+              optimum="100"
+              value="40"
+            ></meter>
+            <span class="meter-val">40%</span>
+          </div>
+          <div class="meter-row">
+            <label>Critical</label>
+            <meter
+              min="0"
+              max="100"
+              low="25"
+              high="75"
+              optimum="100"
+              value="10"
+            ></meter>
+            <span class="meter-val">10%</span>
+          </div>
+        </div>
+        <div class="desc">
+          <b>&lt;meter&gt;</b> represents a scalar value within a known range
+          (unlike &lt;progress&gt;).<br />
+          <code>min</code> / <code>max</code> → the full range of the meter.<br />
+          <code>low</code> → threshold below which value is considered "low".<br />
+          <code>high</code> → threshold above which value is "high".<br />
+          <code>optimum</code> → the ideal/best value — browser colors
+          green/yellow/red automatically.
+        </div>
+      </section>
+
+      <!-- MARK / ABBR / SUB / SUP / DEL / INS -->
+      <section>
+        <h2>
+          &lt;mark&gt; &lt;abbr&gt; &lt;del&gt; &lt;ins&gt; &lt;sub&gt;
+          &lt;sup&gt;
+        </h2>
+        <div class="text-tags-demo">
+          <p>
+            Use <mark>highlighted text</mark> to draw attention to key terms.
+          </p>
+          <p>
+            <abbr title="HyperText Markup Language">HTML</abbr> and
+            <abbr title="Cascading Style Sheets">CSS</abbr> are the building
+            blocks of the web.
+          </p>
+          <p>Price: <del>₹999</del> <ins>₹699</ins> — Limited time offer!</p>
+          <p>
+            H<sub>2</sub>O is water. E = mc<sup>2</sup> is Einstein's equation.
+          </p>
+        </div>
+        <div class="desc">
+          <b>&lt;mark&gt;</b> highlights text with a yellow background.<br />
+          <b>&lt;abbr title="..."&gt;</b> defines an abbreviation; hover to see
+          the full form as a tooltip.<br />
+          <b>&lt;del&gt;</b> shows deleted/removed text (strikethrough).<br />
+          <b>&lt;ins&gt;</b> shows inserted/added text (underline).<br />
+          <b>&lt;sub&gt;</b> renders text as subscript (below baseline).<br />
+          <b>&lt;sup&gt;</b> renders text as superscript (above baseline).
+        </div>
+      </section>
+
+      <!-- BLOCKQUOTE / Q -->
+      <section>
+        <h2>&lt;blockquote&gt; and &lt;q&gt;</h2>
+        <blockquote cite="https://example.com">
+          The only way to do great work is to love what you do.
+          <cite>— Steve Jobs</cite>
+        </blockquote>
+        <p style="font-size: 0.92rem; color: var(--text)">
+          Einstein once said:
+          <q cite="https://example.com"
+            >Imagination is more important than knowledge.</q
+          >
+        </p>
+        <div class="desc">
+          <b>&lt;blockquote&gt;</b> represents a long block quotation from an
+          external source.<br />
+          <b>&lt;cite&gt;</b> inside blockquote gives the author/source
+          credit.<br />
+          <b>&lt;q&gt;</b> is for short inline quotations — browser adds
+          quotation marks automatically.<br />
+          <code>cite="url"</code> → links to the original source
+          (machine-readable, not visible).
+        </div>
+      </section>
+
+      <!-- CANVAS -->
+      <section>
+        <h2>&lt;canvas&gt; Tag</h2>
+        <div class="canvas-toolbar">
+          <button
+            class="color-btn active"
+            style="background: #3b82f6"
+            data-clr="#3b82f6"
+            onclick="setColor(this)"
+          ></button>
+          <button
+            class="color-btn"
+            style="background: #ef4444"
+            data-clr="#ef4444"
+            onclick="setColor(this)"
+          ></button>
+          <button
+            class="color-btn"
+            style="background: #22c55e"
+            data-clr="#22c55e"
+            onclick="setColor(this)"
+          ></button>
+          <button
+            class="color-btn"
+            style="background: #f59e0b"
+            data-clr="#f59e0b"
+            onclick="setColor(this)"
+          ></button>
+          <button
+            class="color-btn"
+            style="background: #8b5cf6"
+            data-clr="#8b5cf6"
+            onclick="setColor(this)"
+          ></button>
+          <button
+            class="color-btn"
+            style="background: #000000"
+            data-clr="#000000"
+            onclick="setColor(this)"
+          ></button>
+          <button class="canvas-action-btn" onclick="clearCanvas()">
+            🗑 Clear
+          </button>
+          <button class="canvas-action-btn" onclick="downloadCanvas()">
+            ⬇ Save
+          </button>
+        </div>
+        <canvas id="myCanvas" width="600" height="200"></canvas>
+        <div class="desc">
+          <b>&lt;canvas&gt;</b> is a bitmap drawing surface controlled entirely
+          via JavaScript.<br />
+          <code>getContext('2d')</code> → returns the 2D drawing API.<br />
+          <code>beginPath()</code>, <code>moveTo()</code>,
+          <code>lineTo()</code>, <code>stroke()</code> → draw lines.<br />
+          Use cases: games, charts, image editing, animations, signatures.
+        </div>
+      </section>
+
+      <!-- TEMPLATE -->
+      <section>
+        <h2>&lt;template&gt; Tag</h2>
+        <button
+          class="open-dialog-btn"
+          onclick="addCard()"
+          style="margin-bottom: 14px"
+        >
+          ➕ Clone Template
+        </button>
+        <div class="template-output" id="tplOutput"></div>
+
+        <template id="cardTpl">
+          <div class="tpl-card">
+            <strong class="tpl-title">Item #?</strong>
+            <span class="tpl-time">Added at: --:--</span>
+          </div>
+        </template>
+
+        <div class="desc">
+          <b>&lt;template&gt;</b> holds HTML that is <em>not rendered</em> until
+          cloned via JavaScript.<br />
+          <code>document.querySelector('template').content</code> → accesses the
+          template's DOM.<br />
+          <code>cloneNode(true)</code> → makes a deep copy ready to insert into
+          the page.<br />
+          Perfect for repeating UI patterns like cards, list items, or table
+          rows.
+        </div>
+      </section>
+
+      <!-- DATA-* / TABINDEX / HIDDEN -->
+      <section>
+        <h2>data-* &nbsp;|&nbsp; tabindex &nbsp;|&nbsp; hidden</h2>
+
+        <p
+          style="
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 600;
+          "
+        >
+          Click a badge to read its <code>data-*</code> value:
+        </p>
+        <div class="attr-demo-grid">
+          <div
+            class="data-badge"
+            data-role="admin"
+            data-id="001"
+            onclick="showData(this)"
+          >
+            👤 Admin
+          </div>
+          <div
+            class="data-badge"
+            data-role="editor"
+            data-id="042"
+            onclick="showData(this)"
+          >
+            ✏️ Editor
+          </div>
+          <div
+            class="data-badge"
+            data-role="viewer"
+            data-id="099"
+            onclick="showData(this)"
+          >
+            👁 Viewer
+          </div>
+        </div>
+        <div class="data-tooltip" id="dataOut">
+          data-* values will appear here…
+        </div>
+
+        <p
+          style="
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+            margin-bottom: 6px;
+            font-weight: 600;
+          "
+        >
+          Tab through these boxes (uses <code>tabindex</code>):
+        </p>
+        <div class="tabindex-row">
+          <div class="tab-box" tabindex="3">tabindex="3"</div>
+          <div class="tab-box" tabindex="1">tabindex="1" ← first</div>
+          <div class="tab-box" tabindex="2">tabindex="2"</div>
+          <div class="tab-box" tabindex="-1">tabindex="-1" (no tab)</div>
+        </div>
+
+        <p
+          style="
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+            margin-bottom: 6px;
+            font-weight: 600;
+          "
+        >
+          hidden attribute:
+        </p>
+        <button class="canvas-action-btn" onclick="toggleHidden()">
+          Toggle hidden element
+        </button>
+        <p
+          id="hiddenEl"
+          hidden
+          style="
+            margin-top: 10px;
+            padding: 12px 16px;
+            background: var(--accent-soft);
+            border-radius: 8px;
+            color: var(--accent);
+            font-weight: 600;
+          "
+        >
+          👋 I was hidden using the <code>hidden</code> attribute!
+        </p>
+
+        <div class="desc">
+          <code>data-*</code> → custom attributes to store extra info on any
+          element; read via <code>el.dataset.key</code>.<br />
+          <code>tabindex="0"</code> → adds element to natural tab order.<br />
+          <code>tabindex="n"</code> → sets explicit tab order (1 first, 2
+          second…).<br />
+          <code>tabindex="-1"</code> → removes from tab order but focusable via
+          JS.<br />
+          <code>hidden</code> → hides element completely (like
+          <code>display:none</code>) — toggle with JS.
+        </div>
+      </section>
+    </main>
+
+    <script src="index.js" async></script>
+  </body>
+</html>
