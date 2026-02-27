@@ -132,7 +132,7 @@ body {
 }
 
 .toggle {
-  width: clamp(38px, 6vw, 48px);
+  width: clamp(42px, 6vw, 48px);
   height: clamp(21px, 3.5vw, 26px);
   background: var(--toggle-bg);
   border-radius: 999px;
